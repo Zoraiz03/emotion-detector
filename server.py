@@ -1,3 +1,7 @@
+"""
+This module provides a Flask web application for emotion detection
+using the Watson NLP library.
+"""
 from flask import Flask, render_template, request
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -5,6 +9,7 @@ app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def sent_analyzer():
+    """Analyze the emotion of the given text and return the result."""
     text_to_analyze = request.args.get('textToAnalyze')
     response = emotion_detector(text_to_analyze)
 
@@ -25,7 +30,9 @@ def sent_analyzer():
 
 @app.route("/")
 def render_index_page():
+    """Render the index page."""
     return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+    
